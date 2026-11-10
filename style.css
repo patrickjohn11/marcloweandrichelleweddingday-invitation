@@ -1,0 +1,556 @@
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--wine:#6f1022;--wine2:#8e1830;--red:#a81732;--deep:#430913;--cream:#fbf1eb;--paper:#fffdf9;--gold:#a87b43;--gold2:#d8b47a;--ink:#4a3034;--muted:#8a7073;--line:rgba(168,123,67,.34)}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+  color:var(--ink);
+  font-family:Montserrat,sans-serif;
+  background:
+    linear-gradient(rgba(255,250,248,.72),rgba(255,250,248,.72)),
+    url("assets/rose-background.png") center center / cover fixed no-repeat;
+}
+body:after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 50% 45%,rgba(255,255,255,.35),transparent 48%),
+    linear-gradient(180deg,rgba(255,255,255,.15),rgba(111,16,34,.05));
+}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;background:repeating-linear-gradient(0deg,rgba(72,25,30,.018) 0 1px,transparent 1px 5px);z-index:-1}
+.page{position:relative;z-index:1}.eyebrow,.small-title{font:600 9px Montserrat,sans-serif;letter-spacing:3px;color:var(--gold)}
+.script{font-family:"Great Vibes",cursive;color:var(--wine)}
+.petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}.petals span{position:absolute;top:-30px;font-size:14px;opacity:.2;animation:fall linear infinite}.petals span:nth-child(1){left:5%;animation-duration:13s}.petals span:nth-child(2){left:16%;animation-duration:17s;animation-delay:4s}.petals span:nth-child(3){left:29%;animation-duration:15s;animation-delay:2s}.petals span:nth-child(4){left:42%;animation-duration:19s;animation-delay:7s}.petals span:nth-child(5){left:57%;animation-duration:14s;animation-delay:3s}.petals span:nth-child(6){left:68%;animation-duration:18s;animation-delay:6s}.petals span:nth-child(7){left:78%;animation-duration:16s;animation-delay:1s}.petals span:nth-child(8){left:89%;animation-duration:13s;animation-delay:5s}.petals span:nth-child(9){left:35%;animation-duration:20s;animation-delay:9s}.petals span:nth-child(10){left:94%;animation-duration:15s;animation-delay:8s}@keyframes fall{0%{transform:translateY(-30px) rotate(0);opacity:0}15%{opacity:.7}100%{transform:translateY(110vh) rotate(360deg);opacity:0}}
+
+/* CSS red rose */
+.rose{display:inline-block;position:relative;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 52% 48%,#ffd4d8 0 8%,#b91d3c 9% 18%,#8e1028 19% 31%,#c32343 32% 43%,#760b20 44% 57%,#b71938 58% 71%,#5e0819 72% 100%);box-shadow:0 4px 8px rgba(70,5,20,.2)}.rose:after,.rose:before{content:"";position:absolute;background:#48672e;width:13px;height:7px;border-radius:100% 0;bottom:-5px}.rose:before{left:1px;transform:rotate(25deg)}.rose:after{right:0;transform:rotate(-25deg)}.rose-tiny{width:18px;height:18px}.rose-small{width:27px;height:27px}.rose-medium{width:40px;height:40px}.rose-large{width:58px;height:58px}
+
+/* OPENING */
+.envelope-screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:45px 18px;background:radial-gradient(circle at 50% 35%,rgba(255,255,255,.9),transparent 45%)}.top-ornament{display:flex;align-items:center;gap:12px;margin-bottom:18px;color:var(--gold)}.top-ornament span{width:75px;height:1px;background:linear-gradient(90deg,transparent,var(--gold2))}.top-ornament span:last-child{background:linear-gradient(90deg,var(--gold2),transparent)}.top-ornament b{font-weight:400}.envelope-wrap{width:min(470px,92vw);height:320px;perspective:1300px;cursor:pointer;margin:16px 0 22px}.envelope{width:100%;height:100%;position:relative;filter:drop-shadow(0 22px 24px rgba(70,8,20,.18));transform:translateZ(0)}.envelope-back{position:absolute;inset:0;border-radius:4px;background:linear-gradient(145deg,#7d1026,#4f0815);overflow:hidden}.envelope-back:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,transparent 49%,rgba(255,255,255,.08) 50%,transparent 51%),linear-gradient(35deg,transparent 49%,rgba(255,255,255,.08) 50%,transparent 51%)}.letter{position:absolute;left:7%;bottom:5%;width:86%;height:84%;background:#fffdf9;padding:18px;z-index:2;transition:transform 1.7s cubic-bezier(.2,.8,.2,1);box-shadow:0 5px 18px rgba(0,0,0,.12)}.mini-card{height:100%;border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;background:linear-gradient(145deg,#fff,#fff8f4)}.mini-card:before{content:"";position:absolute;inset:8px;border:1px solid rgba(168,123,67,.14)}.mini-rose{margin-bottom:8px}.mini-script{font:26px "Great Vibes",cursive;color:var(--wine)}.mini-names{font:600 31px "Cormorant Garamond",serif;color:var(--deep)}.mini-names span{font:32px "Great Vibes",cursive;color:var(--gold)}.mini-date{margin-top:7px;font-size:8px;letter-spacing:2.5px;color:var(--gold)}.envelope-front{position:absolute;inset:0;background:#771126;clip-path:polygon(0 0,50% 62%,100% 0,100% 100%,0 100%);z-index:4}.envelope-flap{position:absolute;top:0;left:0;width:100%;height:57%;background:linear-gradient(155deg,#a51d3a,#620b1c);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform 1.8s cubic-bezier(.2,.7,.15,1),z-index 0s linear .9s;z-index:5}.seal{position:absolute;left:50%;top:49%;transform:translate(-50%,-50%);width:68px;height:68px;border-radius:50%;background:radial-gradient(circle,#b31b3a 0 55%,#6e0a20 56%);border:3px solid #d4a463;color:#fff;display:grid;place-items:center;font:600 15px "Cormorant Garamond",serif;z-index:7;box-shadow:0 6px 14px rgba(0,0,0,.22);transition:.5s}.seal:before{content:"❧";position:absolute;top:6px;color:#f0c89e;font-size:12px}.tap-title{font:47px "Great Vibes",cursive;color:var(--wine)}.tap-text{font-size:11px;color:var(--muted);margin-top:5px}.tap-icon{margin-top:10px;color:var(--red);font-size:23px;animation:bounce 1.5s infinite}.opening-note{display:flex;align-items:center;gap:8px;margin-top:16px;color:var(--gold);font:14px "Cormorant Garamond",serif}.opening-note .rose{transform:scale(.55)}@keyframes bounce{50%{transform:translateY(7px)}}.envelope-screen.opening .envelope-flap{transform:rotateX(180deg);z-index:2}.envelope-screen.opening .letter{transform:translateY(-120px)}.envelope-screen.opening .seal{opacity:0;transform:translate(-50%,-50%) scale(.5)}.envelope-screen.opening{opacity:0;transform:scale(1.03);pointer-events:none;transition:opacity .8s,transform .8s}
+
+/* MAIN CARD */
+.invitation{min-height:100vh;display:none;justify-content:center;padding:30px 12px 60px;animation:reveal 1.2s ease forwards}.invitation.visible{display:flex}@keyframes reveal{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}.invitation-card{width:min(720px,100%);background:var(--paper);position:relative;overflow:hidden;border:1px solid rgba(168,123,67,.4);box-shadow:0 28px 90px rgba(71,16,26,.2)}.invitation-card:before{content:"";position:absolute;inset:11px;border:1px solid rgba(168,123,67,.28);pointer-events:none;z-index:20}.corner-rose{position:absolute;top:15px;z-index:5}.corner-left{left:15px}.corner-right{right:15px;transform:scaleX(-1)}.corner-rose i{display:block;position:absolute;width:35px;height:7px;background:#49652e;border-radius:100% 0;left:30px;top:35px;transform:rotate(30deg)}.corner-rose i:nth-child(3){left:42px;top:48px;transform:rotate(65deg)}
+.hero{text-align:center;padding:70px 28px 48px;background:linear-gradient(#fffdfb,#fff9f4)}.hero-paper-mark{color:var(--gold);font-size:14px;margin-bottom:11px}.hero .eyebrow{margin-bottom:14px}.hero-rose{height:44px;display:flex;justify-content:center;align-items:center}.hero .script{font-size:29px;margin-top:3px}.hero h2{font:500 clamp(52px,11vw,84px)/.92 "Cormorant Garamond",serif;color:var(--deep);margin-top:5px}.hero h2 span{font:42px "Great Vibes",cursive;color:var(--gold)}.date{font:600 12px Montserrat,sans-serif;color:var(--gold);letter-spacing:5px;margin-top:19px}.location-line{font-size:8px;letter-spacing:3px;color:var(--muted);margin-top:9px}.hero-frame{margin:25px auto 0;display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gold);font-size:7px;letter-spacing:3px}.hero-frame span{width:50px;height:1px;background:var(--line)}
+.intro-card{margin:0 58px 28px;padding:26px 35px;text-align:center;background:#fff8f4;border:1px solid var(--line);position:relative}.intro-card:before{content:"";position:absolute;inset:7px;border:1px solid rgba(168,123,67,.16)}.intro-flower{height:31px}.intro-card>p{font:21px/1.45 "Cormorant Garamond",serif;color:#684c51;max-width:500px;margin:0 auto 10px}.intro-card strong{font:17px "Great Vibes",cursive;color:var(--wine)}
+.details-feature{padding:24px 50px 45px;background:linear-gradient(145deg,#f8e9e5,#fff9f5)}.details-paper{position:relative;background:#fffdf9;padding:39px 28px 28px;text-align:center;border:1px solid var(--line);box-shadow:0 18px 35px rgba(76,17,28,.1)}.details-paper:before{content:"";position:absolute;inset:8px;border:1px solid rgba(168,123,67,.16);pointer-events:none}.lace-top{position:absolute;top:-1px;left:8%;right:8%;height:15px;background:radial-gradient(circle at 50% 100%,transparent 7px,#fff 8px,#fff 12px,transparent 13px) 0 0/24px 16px repeat-x;opacity:.95}.details-paper h3{font:500 50px "Great Vibes",cursive;color:var(--wine);margin:1px 0}.details-ornament{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gold);font-size:10px;margin-bottom:18px}.details-ornament span{width:65px;height:1px;background:var(--line)}.detail-columns{display:grid;grid-template-columns:1fr 1fr;gap:12px}.detail-block{padding:20px 12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.detail-icon{color:var(--wine);font-size:19px}.detail-block h4{font-size:9px;letter-spacing:2.5px;color:var(--wine);margin:7px 0 10px}.detail-block p{font:18px/1.2 "Cormorant Garamond",serif}.detail-block small{font:11px "Cormorant Garamond",serif;color:var(--muted)}.details-footer{margin-top:17px;color:var(--muted);font:13px "Cormorant Garamond",serif}
+.story-reference{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center;padding:45px 50px;background:#fffdf9}.photo-frame{background:#fff;padding:9px;border:1px solid rgba(168,123,67,.48);box-shadow:0 18px 32px rgba(71,16,26,.13);position:relative}.photo-frame img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover}.large-frame{transform:rotate(-1.2deg)}.frame-caption{position:absolute;left:0;right:0;bottom:12px;text-align:center;font:24px "Great Vibes",cursive;color:#fff;text-shadow:0 1px 5px #3c0b16}.story-card{padding:8px 0}.story-label{font:600 8px Montserrat,sans-serif;letter-spacing:3px;color:var(--gold)}.story-card h3{font:500 40px/1.02 "Cormorant Garamond",serif;color:var(--deep);margin:10px 0 15px}.story-card h3 em{font:44px "Great Vibes",cursive;color:var(--wine)}.story-card p{font:17px/1.55 "Cormorant Garamond",serif;color:var(--muted)}.mini-date-line{margin-top:19px;color:var(--wine);font-size:9px;letter-spacing:2px}
+.gallery-section{padding:48px 45px;background:linear-gradient(180deg,#fffdf9,#f8ebe7)}.section-heading{text-align:center;margin-bottom:27px}.section-heading h3{font:500 40px "Cormorant Garamond",serif;color:var(--deep);margin:5px 0}.heading-rose{display:flex;justify-content:center;margin-top:5px}.reference-gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;align-items:start;padding:8px 5px 15px}.polaroid{margin:0;background:#fff;padding:7px 7px 24px;box-shadow:0 13px 25px rgba(66,16,25,.13);border:1px solid #eee;position:relative}.polaroid img{width:100%;aspect-ratio:1/1.12;display:block;object-fit:cover}.polaroid figcaption{font:15px "Cormorant Garamond",cursive;color:var(--wine);text-align:center;padding-top:7px}.p1{grid-column:1/3;transform:rotate(-3deg)}.p2{grid-column:3/5;transform:rotate(2deg);margin-top:22px}.p3{grid-column:5/7;transform:rotate(-2deg)}.p4{grid-column:2/4;transform:rotate(2deg);margin-top:-5px}.p5{grid-column:4/6;transform:rotate(-3deg);margin-top:18px}
+.timeline-section{padding:48px 50px}.timeline{max-width:570px;margin:auto;position:relative}.timeline:before{content:"";position:absolute;left:22px;top:17px;bottom:17px;width:1px;background:var(--line)}.timeline-card{display:grid;grid-template-columns:45px 1fr;gap:15px;margin-bottom:17px;position:relative}.timeline-card>span{width:45px;height:45px;border-radius:50%;display:grid;place-items:center;background:var(--wine);color:#fff;border:2px solid #fff;box-shadow:0 0 0 1px var(--gold2);font-size:8px;z-index:1}.timeline-card>div{padding:13px 16px;border:1px solid var(--line);background:#fffaf7}.timeline-card b{display:block;color:var(--wine);font-size:9px;letter-spacing:2px}.timeline-card small{display:block;color:var(--gold);font-size:8px;letter-spacing:1px;margin:4px 0}.timeline-card p{font:15px/1.35 "Cormorant Garamond",serif;color:var(--muted)}
+.quote-card{display:flex;align-items:center;justify-content:center;gap:22px;text-align:center;padding:34px 25px;background:linear-gradient(135deg,#6c0e20,#8d1830);color:#fff}.quote-card p{font:29px/1.1 "Great Vibes",cursive}.quote-rose{font-size:17px}
+.guest-section{padding:46px 45px;background:#fffaf7}.guest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.guest-grid>div{text-align:center;padding:22px 14px;border:1px solid var(--line);background:#fffdfb}.guest-grid span{font-size:20px;color:var(--wine)}.guest-grid h4{font-size:8px;letter-spacing:2px;color:var(--wine);margin:8px 0}.guest-grid p{font:14px/1.45 "Cormorant Garamond",serif;color:var(--muted)}
+.countdown-section{text-align:center;padding:40px 20px;background:#f9ebe7}.countdown{display:flex;justify-content:center;gap:clamp(15px,5vw,42px);margin-top:18px}.countdown strong{display:block;font:600 36px "Cormorant Garamond",serif;color:var(--wine)}.countdown span{display:block;margin-top:2px;font-size:7px;letter-spacing:1.3px;color:var(--muted)}
+/* RSVP envelope inspired by the reference */
+.rsvp-reference{padding:52px 45px 62px;text-align:center;background:linear-gradient(180deg,#fffaf7,#f5e5e1)}.rsvp-envelope{width:min(420px,90%);height:260px;margin:auto;position:relative;background:linear-gradient(145deg,#8c1530,#5e0b1b);box-shadow:0 22px 32px rgba(68,8,20,.2);overflow:hidden;transform:rotate(-1deg);border-radius:2px}.rsvp-envelope:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,transparent 49%,rgba(255,255,255,.08) 50%,transparent 51%),linear-gradient(35deg,transparent 49%,rgba(255,255,255,.08) 50%,transparent 51%)}.rsvp-flap{position:absolute;left:0;right:0;top:0;height:58%;background:linear-gradient(150deg,#a51b3a,#6a0c20);clip-path:polygon(0 0,100% 0,50% 100%);z-index:2}.rsvp-lace{position:absolute;left:6%;right:6%;top:41%;height:20px;z-index:4;border-top:3px double #f4e4d7;border-bottom:3px double #f4e4d7;opacity:.9}.rsvp-text{position:absolute;z-index:5;left:0;right:0;top:47%;transform:translateY(-50%);color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.18)}.rsvp-text p{font:28px "Great Vibes",cursive}.rsvp-text strong{display:block;font:56px "Great Vibes",cursive;line-height:.85}.rsvp-text span{font-size:7px;letter-spacing:2px}.rsvp-link{position:absolute;inset:0;z-index:6}.rsvp-seal{position:absolute;z-index:7;right:22px;bottom:20px;width:45px;height:45px;border-radius:50%;display:grid;place-items:center;background:#86132b;color:#f7d3bf;border:2px solid #d2a260;font-size:17px}.rsvp-note{margin-top:21px;font:18px "Cormorant Garamond",serif;color:var(--muted)}
+footer{text-align:center;padding:30px 25px 42px;background:#f7e9e5}footer p{font:16px "Cormorant Garamond",serif}footer strong{display:block;font:34px "Great Vibes",cursive;color:var(--wine);margin:2px 0}footer small{font:600 7px Montserrat,sans-serif;letter-spacing:3px;color:var(--gold)}.footer-roses{display:flex;justify-content:center;align-items:end;gap:5px;margin-bottom:7px}.footer-roses .rose-small{transform:scale(.9)}
+.music-button{position:fixed;right:18px;bottom:18px;width:45px;height:45px;border-radius:50%;border:1px solid rgba(168,123,67,.55);background:rgba(255,253,249,.95);color:var(--wine);z-index:30;display:none;box-shadow:0 7px 20px rgba(80,20,30,.12)}
+@media(max-width:650px){.envelope-wrap{height:245px}.letter{padding:12px}.intro-card{margin:0 25px 25px;padding:23px 20px}.details-feature{padding:20px 25px 35px}.detail-columns{grid-template-columns:1fr}.story-reference{grid-template-columns:1fr;padding:40px 30px;gap:26px}.story-card{text-align:center}.gallery-section{padding:42px 22px}.reference-gallery{grid-template-columns:1fr 1fr;gap:13px}.p1,.p2,.p3,.p4,.p5{grid-column:auto;margin-top:0}.p1{transform:rotate(-2deg)}.p2{transform:rotate(2deg)}.p3{transform:rotate(-2deg)}.p4{transform:rotate(2deg)}.p5{transform:rotate(-2deg);grid-column:1/3;width:68%;justify-self:center}.timeline-section{padding:42px 25px}.guest-section{padding:42px 25px}.guest-grid{grid-template-columns:1fr}.rsvp-reference{padding:45px 20px 55px}.rsvp-envelope{height:225px}.hero{padding-top:60px}.hero h2{font-size:58px}.hero h2 span{font-size:34px}.corner-rose{transform:scale(.72)}.corner-right{transform:scaleX(-1) scale(.72)}}
+@media(max-width:420px){.envelope-wrap{height:215px}.tap-title{font-size:41px}.mini-names{font-size:25px}.hero{padding-left:20px;padding-right:20px}.hero .script{font-size:25px}.hero h2{font-size:52px}.intro-card>p{font-size:19px}.details-paper{padding-left:18px;padding-right:18px}.story-card h3{font-size:34px}.story-card h3 em{font-size:39px}.countdown{gap:11px}.countdown strong{font-size:31px}.rsvp-text strong{font-size:48px}}
+
+
+/* =========================================================
+   ROSE BACKGROUND THEME
+   The generated floral image should be placed at:
+   assets/rose-background.png
+   ========================================================= */
+.page{
+  position:relative;
+  z-index:1;
+  isolation:isolate;
+}
+.envelope-screen{
+  background:
+    linear-gradient(rgba(255,253,250,.78),rgba(255,247,245,.82)),
+    url("assets/rose-background.png") center center / cover no-repeat;
+}
+.invitation{
+  position:relative;
+}
+.invitation-card{
+  backdrop-filter:blur(1px);
+}
+@media(max-width:650px){
+  body{
+    background-attachment:scroll;
+    background-position:center top;
+  }
+  .envelope-screen{
+    background-position:center top;
+  }
+}
+/* =========================================================
+   WEDDING COLOR PALETTE
+   ========================================================= */
+
+.palette-section {
+  padding: 70px 45px;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    #fffaf7 0%,
+    #fdf4f0 100%
+  );
+}
+
+.palette-intro {
+  max-width: 650px;
+  margin: 0 auto 35px;
+  color: #75656a;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.color-palette {
+  max-width: 850px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.color-item {
+  text-align: center;
+}
+
+.color-circle {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  border: 5px solid rgba(255,255,255,.9);
+  box-shadow: 0 8px 22px rgba(101,15,32,.15);
+}
+
+.color-item h4 {
+  margin: 0 0 5px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  color: #650f20;
+}
+
+.color-item span {
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #927d82;
+}
+
+.burgundy {
+  background: #650f20;
+}
+.rose-red {
+  background: #A81732;
+}
+
+.dusty-rose {
+  background: #b76e79;
+}
+
+.champagne {
+  background: #e8d3b0;
+}
+
+.ivory {
+  background: #f8f4ec;
+  border-color: #ddd1c5;
+}
+
+.sage {
+  background: #a8b5a2;
+}
+
+
+/* =========================================================
+   WEDDING ENTOURAGE
+   ========================================================= */
+
+.entourage-section {
+  padding: 75px 45px;
+  background: #fff;
+  text-align: center;
+}
+
+.entourage-intro {
+  max-width: 680px;
+  margin: 0 auto 38px;
+  color: #75656a;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.entourage-card {
+  max-width: 950px;
+  margin: auto;
+  padding: 42px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  background:
+    linear-gradient(
+      rgba(255,255,255,.96),
+      rgba(255,255,255,.96)
+    ),
+    url("https://www.transparenttextures.com/patterns/cream-paper.png");
+  border: 1px solid #ead9d4;
+  box-shadow: 0 15px 45px rgba(101,15,32,.08);
+  position: relative;
+}
+
+.entourage-card::before {
+  content: "❧";
+  position: absolute;
+  top: 15px;
+  left: 22px;
+  color: #b76e79;
+  font-size: 24px;
+}
+
+.entourage-card::after {
+  content: "❧";
+  position: absolute;
+  bottom: 15px;
+  right: 22px;
+  color: #b76e79;
+  font-size: 24px;
+  transform: rotate(180deg);
+}
+
+.entourage-group {
+  padding: 15px 20px;
+}
+
+.entourage-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.entourage-group h4 {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  color: #650f20;
+}
+
+.entourage-line {
+  width: 45px;
+  height: 1px;
+  background: #b76e79;
+  margin: 12px auto 20px;
+}
+
+.person {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  margin: 12px 0;
+}
+
+.person > span {
+  color: #b76e79;
+  font-size: 18px;
+  min-width: 25px;
+}
+
+.person div {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.person strong {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 19px;
+  color: #3f2930;
+  font-weight: 600;
+}
+
+.person small {
+  margin-top: 2px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  color: #9b858b;
+  text-transform: uppercase;
+}
+
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 25px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .palette-section,
+  .entourage-section {
+    padding: 55px 20px;
+  }
+
+  .color-palette {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 15px;
+  }
+
+  .color-item:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .entourage-card {
+    grid-template-columns: 1fr;
+    padding: 30px 18px;
+  }
+
+  .entourage-group.full-width {
+    grid-column: auto;
+  }
+
+  .people-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .person {
+    justify-content: flex-start;
+  }
+}
+
+/* ELEGANT COMPACT ENTOURAGE */
+.entourage-section {
+    padding: 55px 18px;
+    background: var(--cream);
+    text-align: center;
+}
+
+.entourage-container {
+    max-width: 760px;
+    margin: auto;
+}
+
+.section-kicker {
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 8px;
+}
+
+.entourage-section h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 38px;
+    font-weight: normal;
+    color: var(--wine);
+    margin-bottom: 4px;
+}
+
+.rose-divider {
+    color: var(--gold);
+    font-size: 23px;
+    margin: 5px 0 12px;
+}
+
+.entourage-intro {
+    max-width: 410px;
+    margin: 0 auto 30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+.entourage-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 13px;
+}
+
+.entourage-group {
+    padding: 17px 12px;
+    background: rgba(255, 253, 249, 0.85);
+    border: 1px solid rgba(168, 123, 67, 0.22);
+    border-radius: 8px;
+}
+
+.entourage-group h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--wine);
+    padding-bottom: 9px;
+    margin-bottom: 9px;
+    border-bottom: 1px solid rgba(168, 123, 67, 0.3);
+}
+
+.entourage-group p {
+    margin: 9px 0;
+    line-height: 1.3;
+}
+
+.entourage-group strong {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.entourage-group span {
+    display: block;
+    font-size: 10px;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+@media (max-width: 600px) {
+    .entourage-section {
+        padding: 40px 14px;
+    }
+
+    .entourage-section h2 {
+        font-size: 33px;
+    }
+
+    .entourage-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        max-width: 340px;
+        margin: auto;
+    }
+
+    .entourage-group {
+        padding: 14px 10px;
+    }
+
+    .entourage-group strong {
+        font-size: 14px;
+    }
+}
+
+/* =====================================
+   WEDDING MUSIC BUTTON
+===================================== */
+
+.music-button {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 99999;
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #d8b47a;
+    border-radius: 50%;
+
+    background: #650f20;
+    color: #fffdf9;
+
+    cursor: pointer;
+    box-shadow: 0 5px 18px rgba(67, 9, 19, 0.25);
+
+    transition: 0.3s ease;
+}
+
+.music-button:hover {
+    background: #a81732;
+    transform: scale(1.08);
+}
+
+.music-button svg {
+    width: 21px;
+    height: 21px;
+}
+
+.music-button.playing {
+    animation: musicRotate 4s linear infinite;
+}
+
+@keyframes musicRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================
+   LAYOUT REPAIR – FULL SCREEN INVITATION
+   ========================================= */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: block;
+    overflow-x: hidden;
+}
+
+.page {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    margin: 0 auto;
+}
+
+/* CENTER THE INVITATION */
+.invitation {
+    width: 100%;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px 16px 60px;
+}
+
+.invitation.visible {
+    display: flex;
+}
+
+.invitation-card {
+    width: min(720px, 100%);
+    max-width: 720px;
+    flex: 0 1 720px;
+    margin: 0 auto;
+}
+
+/* PREVENT CONTENT FROM OVERFLOWING */
+.invitation-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 650px) {
+    .invitation {
+        padding: 12px 8px 35px;
+    }
+
+    .invitation-card {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+
+
